@@ -4,7 +4,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 import sys
 
-helpstr - '''The script requires the following 7 arguements (in the given order):
+helpstr = '''The script requires the following 7 arguements (in the given order):
     path to the reference genome in fasta format
     path to the vcf
     name of the contig that contains the region of interest
@@ -25,8 +25,8 @@ ref_path = sys.argv[1]
 print 'Reading the reference genome: '+ref_path
 ref = SeqIO.index(ref_path, "fasta")
 
-print 'Reading the vcf: '+vcf_path
 vcf_path = sys.argv[2]
+print 'Reading the vcf: '+vcf_path
 vcffile = VariantFile(vcf_path)
 
 contig = sys.argv[3]
@@ -34,17 +34,18 @@ start = int(sys.argv[4])
 end = int(sys.argv[5])
 print 'Getting variants in region %s:%i-%u'%(contig, start, end)
 variants = list(vcffile.fetch(contig, start, end-1))
+ref_seq = ref[contig].seq[start:end]
 
 if len(variants) == 0:
     raise Exception('No variants in specified region. Terminating.')
 
 ploidy = int(sys.argv[6])
-print 'Ploidy is %i.'+%ploidy
+print 'Ploidy is %i.'%ploidy
 
 if len(sys.argv) == 9:
     samples_path = sys.argv[8]
     with open(samples_path, 'r') as sfile:
-        samples = [l.strip() if l.strip!='' for l in sfile]
+        samples = [l.strip() for l in sfile if l.strip()!='']
     print 'Generating alignment for the following individuals: '+str(samples)
 else:
     samples = list(variants[0].samples.keys())
@@ -74,4 +75,3 @@ print 'Writing alignement to: '+out_path
 SeqIO.write(records, out_path, "fasta")
 
 print 'Done.'
-
