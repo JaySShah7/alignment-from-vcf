@@ -10,11 +10,11 @@ I have written this script for my own use, but have not tested in systematically
 
 Usage:
 The script requires the following 7 arguements (in the given order):
-    path to the reference genome in fasta format
-    path to the vcf
-    name of the contig that contains the region of interest
-    start of the region
-    end of the region
-    ploidy (This script obviously only makes sense if variants are phased. One sequence per genome copy will be generated)
-    path to the output file. This will be in fasta format.
+- path to the reference genome in fasta format
+- path to the vcf
+- name of the contig that contains the region of interest
+- start of the region
+- end of the region
+- ploidy (This script obviously only makes sense if variants are phased. One sequence per genome copy will be generated)
+- path to the output file. This will be in fasta format.
 An 8th arguement can optionally be supplied and should specify the path to a file containing a list of individuals to be included (one per line). If not supplied, all individuals will be used.
