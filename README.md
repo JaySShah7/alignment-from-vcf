@@ -17,4 +17,5 @@ The script requires the following 7 arguements (in the given order):
 - end of the region
 - ploidy (This script obviously only makes sense if variants are phased. One sequence per genome copy will be generated)
 - path to the output file. This will be in fasta format.
+
 An 8th arguement can optionally be supplied and should specify the path to a file containing a list of individuals to be included (one per line). If not supplied, all individuals will be used.
