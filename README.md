@@ -11,7 +11,7 @@ I have written this script for my own use, but have not tested in systematically
 Usage:
 The script requires the following 7 arguements (in the given order):
 - path to the reference genome in fasta format
-- path to the vcf
+- path to the vcf. This must be gzipped and indexed. Run 'bgzip -c file.vcf > file.vcf.gz; tabix -p vcf file.vcf.gz' from the samtools/htslib package.
 - name of the contig that contains the region of interest
 - start of the region
 - end of the region
