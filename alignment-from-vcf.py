@@ -8,8 +8,8 @@ helpstr = '''The script requires the following 7 arguements (in the given order)
     path to the reference genome in fasta format
     path to the vcf
     name of the contig that contains the region of interest
-    start of the region
-    end of the region
+    start of the region - the start base will be included and this is 1-indexed (i.e. use start=1 to start at the beginning of the contig)
+    end of the region - the end is included in the output
     ploidy (This script obviously only makes sense if variants are phased. One sequence per genome copy will be generated)
     path to the output file. This will be in fasta format.
 An 8th arguement can optionally be supplied and should specify the path to a file containing a list of individuals to be included.
@@ -33,8 +33,8 @@ contig = sys.argv[3]
 start = int(sys.argv[4])
 end = int(sys.argv[5])
 print 'Getting variants in region %s:%i-%u'%(contig, start, end)
-variants = list(vcffile.fetch(contig, start, end-1))
-ref_seq = ref[contig].seq[start:end]
+variants = list(vcffile.fetch(contig, start-1, end))
+ref_seq = ref[contig].seq[start-1:end]
 
 if len(variants) == 0:
     raise Exception('No variants in specified region. Terminating.')
