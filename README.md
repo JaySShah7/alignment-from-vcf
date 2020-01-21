@@ -1,7 +1,7 @@
 # alignment-from-vcf
 Make fasta alignments from vcf files, written by Stephan Kamrad (stephan.kamrad@crick.ac.uk)
 
-This script requires biopython (http://biopython.org/wiki/Biopython) and pysam (http://pysam.readthedocs.io/en/latest/) installed. I have only used and tested this in Linux environments.
+This script will only work with Python 2.x and requires biopython (http://biopython.org/wiki/Biopython) and pysam (http://pysam.readthedocs.io/en/latest/) installed. I have only used and tested this in Linux environments.
 
 The script will generate a sequence alignment for multiple individuals using the reference genome and a vcf file.
 I personally work with S. pombe (which conveniently is haploid) but this script should work for higher ploidy as well. In that case, one sequence per individual and genome copy is generated. This obviously only makes sense if your variants are phased. The heavy lifting (parsing of the vcf) is done by pysam, so it all depends on whether or not pysam can handle your vcf correctly. 
@@ -13,8 +13,9 @@ The script requires the following 7 arguements (in the given order):
 - path to the reference genome in fasta format
 - path to the vcf. This must be gzipped and indexed. Run 'bgzip -c file.vcf > file.vcf.gz; tabix -p vcf file.vcf.gz' from the samtools/htslib package.
 - name of the contig that contains the region of interest
-- start of the region
-- end of the region
+- start of the region 
+- the start base will be included and this is 1-indexed (i.e. use start=1 to start at the beginning of the contig)
+    end of the region - the end is included in the output
 - ploidy (This script obviously only makes sense if variants are phased. One sequence per genome copy will be generated)
 - path to the output file. This will be in fasta format.
 
