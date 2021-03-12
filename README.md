@@ -1,7 +1,7 @@
 # alignment-from-vcf
 Make fasta alignments from vcf files, written by Stephan Kamrad (stephan.kamrad@crick.ac.uk)
 
-This script will only work with Python 2.x and requires biopython (http://biopython.org/wiki/Biopython) and pysam (http://pysam.readthedocs.io/en/latest/) installed. I have only used and tested this in Linux environments.
+This script is updated for Python 3.x and requires biopython (http://biopython.org/wiki/Biopython) and pysam (http://pysam.readthedocs.io/en/latest/) installed. I have only used and tested this in Linux environments.
 
 The script will generate a sequence alignment for multiple individuals using the reference genome and a vcf file.
 I personally work with S. pombe (which conveniently is haploid) but this script should work for higher ploidy as well. In that case, one sequence per individual and genome copy is generated. This obviously only makes sense if your variants are phased. The heavy lifting (parsing of the vcf) is done by pysam, so it all depends on whether or not pysam can handle your vcf correctly. 
